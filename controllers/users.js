@@ -331,6 +331,20 @@ function updateArtist(req, res) {
 }
 /** Code End:: update user and artist */
 
+/** Code Start:: get all users type 2 */
+const allUserType2 = (req,res)=> {
+    user.find({"userType":2}).then(result => {
+        if (result.length == 0)
+            return res.status(200).json([{ success: 'There is no user' }]);
+        result.splice(0, 0, { success: 'Successfully get all users' });
+        return res.status(200).json(result);
+    }).catch(err => {
+        return res.status(200).json([{ message: 'Fail to get all users', error: err }]);
+    })
+}
+/** Code End:: get all users type 2 */
+
+
 exports.signup = signup;
 exports.login = login;
 exports.forgetPassword = forgetPassword;
@@ -341,6 +355,7 @@ exports.uploadMulter = uploadMulter;
 exports.artist = artist;
 exports.editProfile = editProfile;
 exports.deleteMediaArtIdMedId = deleteMediaArtIdMedId;
+exports.allUserType2 = allUserType2;
 
 
 

@@ -3,7 +3,7 @@ var express = require('express');
 var logger = require('morgan');
 var path = require('path');
 const app = express();
-require('../musicStream/db/connection/connection');
+require('./db/connection/connection');
 
 // Middleware
 
@@ -17,9 +17,10 @@ app.use(express.static(path.join(__dirname, '/songsAndImages/audioVideo/')));
 app.use(express.static(path.join(__dirname, '/songs/thumbnail_Images/')));
 
 // Routes
-app.use('/', require('./routes/users'));
-app.use('/', require('./routes/songs'));
-app.use('/', require('./routes/approvals'));
+// app.use('/', require('./routes/users'));
+// app.use('/', require('./routes/songs'));
+// app.use('/', require('./routes/approvals'));
+app.use('/', require('./routes/endPoints'));
 
 // Start server
 const port = 3000;

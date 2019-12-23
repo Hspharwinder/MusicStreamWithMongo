@@ -113,6 +113,21 @@ var setValues = (req) => {
     return (fieldValues);
 }
 
+const changeStatus = (req,res)=>{
+    const userId = parseInt(req.body.id);
+    const userName = req.body.userName;
+    const status = req.body.status;
+    let value = {$set: {status: status}};
+    user.updateOne({ _id: userId, userName: userName }, value ).then(result => {
+        if (result.nModified < 1)
+            return res.status(200).json([{ message: "Status not changed" }]);
+        return res.status(200).json([{ message: "Status changed" }]);
+    }).catch(err=>{
+        res.status(200).json([{ message: "Something went wrong while changing status", error: err }]);
+    })
+}
+
 exports.allApprovedArtist = allApprovedArtist;
 exports.allPendingArtist = allPendingArtist;
 exports.approveToArtist = approveToArtist;
+exports.changeStatus = changeStatus;

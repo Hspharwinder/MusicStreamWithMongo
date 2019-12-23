@@ -23,6 +23,7 @@ userSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
+mongoose.set('useCreateIndex', true);  // for remove (node:11052) DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
 autoIncrement.initialize(mongoose.connection);
 
 userSchema.plugin(autoIncrement.plugin, 'user');
