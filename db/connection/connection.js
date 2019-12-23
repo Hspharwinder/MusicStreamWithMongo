@@ -8,7 +8,7 @@ require('../schema/comment');
 require('../schema/likingSchema');
 require('../schema/wishListSchema');
 
-const uri = 'mongodb://127.0.0.1:27017/MongoQuery'; // process.env.MONGOURL;
+const uri = ''; // process.env.MONGOURL;
 //  useNewUrlParser: true, useUnifiedTopology: true for removing depricating warning
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     console.log(uri);
